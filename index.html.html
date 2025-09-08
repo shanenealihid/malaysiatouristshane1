@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Malaysia Tourist Attraction</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #01010f;
+            line-height: 1.6;
+        }
+        
+        .Gallery {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 30px;
+         justify-content: left;
+         
+        }
+        .gallery figure {
+         text-align: center;
+         width: 100px;
+
+        }
+        .gallery img {
+         width: 30%;
+         height: 100;
+         border-radius: 10px;
+         display: grid;
+         grid-template-columns: repeat(3,1fr);
+         gap: 30;
+        
+
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: #FF6200;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: rgb(250, 245, 245);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #f8f6f3;
+            text-decoration: none;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(66, 15, 175, 0.5),rgba(166, 151, 194, 0.103)),url('https://a.travel-assets.com/findyours-php/viewfinder/images/res70/473000/473166-Klcc-Park.jpg?impolicy=fcrop&w=1040&h=580&q=mediumHigh')no-repeat center center/cover;
+            height: 71vh;
+            display: flex;
+            align-items:  center;
+            justify-content: center;
+            color: ssrgb(97, 86, 86);
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+         
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #FF6200;
+            color: rgb(83, 39, 39);
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e05a00;
+        }
+        
+        /* Attractions Section */
+        .attractions {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+        
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .attraction-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .attraction-card:hove {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            height: 200px;
+            
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 15px;
+            color: #4d2701;
+            
+        }
+         a {
+            text-decoration: none;
+            color: rgb(75, 64, 64);
+     
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #e9f5ff;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items:center center;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: rgb(248, 244, 244);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fcfbfb;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #867979;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align:center;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: #FF6200;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-top: 40px;
+            }
+        }
+        
+        /* Hide sections initially */
+        section:not(.hero):not(.home) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Malaysia Tourist Attraction</div>
+                <div class="menu-toggle">☰</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link" data-section="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-section="gallery">Gallery</a></li>
+                    <li><a href="#" class="nav-link" data-section="places">Places</a></li>
+                    <li><a href="#" class="nav-link" data-section="about">About</a></li>
+                    <li><a href="#" class="nav-link" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero home">
+        <div class="container">
+            <div class="hero-content">
+                 <h1>Discover Malaysia's Wonder</h1>
+                <p style="color: white;">breathtaking landscapes, vibrant cities, and rich cultural heritage</p>
+              
+            </div>
+        </div>
+    </section>
+
+    <!-- Places Section -->
+    <section class="places">
+        <div class="container">
+            <h2 class="section-title">Popular Places</h2>
+            <div class="attractions-grid">
+                <!-- Attraction 1 -->
+                <div class="attraction-card">
+                    <div class="card-image">
+                        <img src="C:\Users\Admin\Desktop\nav202\images\petroness.jpg" alt="Petronas Twin Towers in Kuala Lumpur at night with city lights">
+                    </div>
+                    <div class="card-content">
+                     <h3> <a href="https://www.petronastwintowers.com.my/">Petronas Twin Towers</a></h3>
+                        <p>The iconic twin skyscrapers in Kuala Lumpur, once the tallest buildings in the world, featuring a sky bridge and observation deck.</p>
+                    </div>
+                </div>
+                
+                <!-- Attraction 2 -->
+                <div class="attraction-card">
+                    <div class="card-image">
+                         <img src="C:\Users\Admin\Desktop\nav202\images\batu caves.jpg" alt="Colorful steps leading to Batu Caves Hindu temple">
+                
+            
+                    </div>
+                    <div class="card-content">
+                        <h3> <a href="https://en.wikipedia.org/wiki/Batu_Caves">Batu Caves</a></h3>
+                        <p>A limestone hill with caves and cave temples, home to a large statue of Lord Murugan and known for its colorful steps.</p>
+                    </div>
+                </div>
+                
+                <!-- Attraction 3 -->
+                <div class="attraction-card">
+                    <div class="card-image">
+                        <img src="C:\Users\Admin\Desktop\nav202\cqdeuqmpgggofxdz6ejy.webp" alt="Beautiful beaches of Langkawi with turquoise waters">
+
+                    </div>
+                    <div class="card-content">
+                        <h3> <a href="https://www.visitlangkawi.org/">Langkawi</a></h3>
+                        <p>An archipelago of 99 islands with beautiful beaches, rainforests, and duty-free shopping, featuring the Sky Bridge.</p>
+                    </div>
+                </div>
+                
+                <!-- Attraction 4 -->
+                <div class="attraction-card">
+                    <div class="card-image">
+                        <img src="C:\Users\Admin\Downloads\istockphoto-177794615-612x612.jpg" alt="Crystal clear waters and white sandy beach at Perhentian Islands">
+                    </div>
+                    <div class="card-content">
+                        <h3><a href="https://media.istockphoto.com/id/177794615/photo/beautiful-beach.jpg?s=612x612&w=0&k=20&c=e9dks_-wlaOJ3xZpHZvJ89ZD4yw-_oGFaBnBVacV9Uo=">Perhentian Islands</a></h3>
+                        <p>A tropical paradise with crystal-clear waters, ideal for snorkeling and diving with vibrant marine life.</p>
+                    </div>
+                </div>
+                
+                <!-- Attraction 5 -->
+                <div class="attraction-card">
+                    <div class="card-image">
+                        <img src="C:\Users\Admin\Desktop\nav202\images\lankawi.jpg" alt="Colonial buildings and street art in George Town, Penang">
+                    </div>
+                    <div class="card-content">
+                        <h3> <a href="https://res.klook.com/image/upload/w_1265,h_785,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/cqdeuqmpgggofxdz6ejy.webp">George Town</a></h3>
+                        <p>A UNESCO World Heritage city known for its colonial architecture, street art, and diverse food scene.</p>
+                    </div>
+                </div>
+                
+                <!-- Attraction 6 -->
+                <div class="attraction-card">
+                    <div class="card-image">
+                        <img src="C:\Users\Admin\Downloads\Tea_Plantation.jpg" alt="Lush tea plantations in Cameron Highlands">
+                    </div>
+                    <div class="card-content">
+                        <h3> <a href="https://en.wikivoyage.org/wiki/Cameron_Highlands">Cameron Highlands</a></h3>
+                        <p>A cool hill station with tea plantations, strawberry farms, and hiking trails through lush greenery.</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    </div>
+                    <img src="C:\Users\Admin\Downloads\gettyimages-1413299539-612x612.jpg"alt="Gallery Image 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\Admin\Downloads\2.jpg"alt="Gallery Image 2">
+                <div class="gallery-item">
+                    <img src="C:\Users\Admin\Documents\1755580418261.jpg"alt="Gallery Image 3">    
+                </div>
+    
+                                                            
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">About Malaysia</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Malaysia is a Southeast Asian country occupying parts of the Malay Peninsula and the island of Borneo. It's known for its beaches, rainforests and mix of Malay, Chinese, Indian and European cultural influences.</p>
+                    <p>The capital Kuala Lumpur is home to colonial buildings, busy shopping districts such as Bukit Bintang and skyscrapers like the iconic Petronas Twin Towers. Its combo of colonial and contemporary architecture makes Malaysia a unique tourist destination.</p>
+                    <p>With tropical climate all year round, Malaysia offers diverse attractions from the bustling metropolis of Kuala Lumpur to the pristine beaches and natural wonders.</p>
+                    <p>There are many tourist attractions outside of the city, spread across Greater Kuala Lumpur and Klang Valley area which has hosted various major national and international events,</p>
+                    <p>from man-made attractions to natural attractions such as mountainous landscapes, hills, and rice fields.</p>
+                    <p> According to the Department of Survey and Mapping, Malaysia, there are 879 islands in the country. </p>
+                    <p>The state of Sabah has the most islands with 395 islands within its waters.Apart from that, Malaysia also has 510 offshore geographical features which include rocks, sandbanks and ridges.</p>
+                    <P>Malaysia has hundreds of islands. Some of them are habitable and passable; others are yet not explored and not habited. Malaysians refer to their islands as 'Pulau'</P>
+                    <p>Most of the well known islands that can be found at Peninsular Malaysia are: Pulau Penang, Pulau Langkawi en Pulau Pangkor on the west side, and Pulau Perhentian, Pulau Redang and Pulau Tioman on the east side.</p>
+                    <p>The islands on the west side aren't well known for their underwater world, i.e. you can't snorkel in many places.</p>
+                    <p>These islands do have a lot of character in general and therefore are more crowded than the islands on the east side of the peninsula.</p>
+                    <p>Islands on the east site are known for their great scuba diving and snorkeling possibilities. </p>
+                    <p>Malaysia's culture is a vibrant mix of Malay, Chinese, Indian, and indigenous influences, reflecting its diverse population and history.</p>
+                    <p>This multiculturalism is a defining characteristic, with various ethnic groups maintaining their distinct traditions, languages, and religions. </p>
+                    <p>Malaysia a member of the commonwealth,represents the political marriage of territories that were formerly under british role.</p>
+                    <p>When it was estsblshed on September 16, 1963,Malaysia comprised the territories of Malaysia(Now Penensular Malaysia),</p>
+                    <p>the Malaysia island of Singapore,and the colonies of Sarwak snd Sabah in northen Borneo.</p>
+                    <p>The long narrow,and rugged Malay Pensula extends to south and southwest from Myanmar and Thailand.</p>
+                    <p>The soil of both portions of Malaysia have been exposed for a long period of time to intense tropical weathering,</p>
+                    <p>with the result the most of their plants nutrients have been leached out.Soil tipically are strongly acidic and coarse-textured and have low amounts of organic matter.</p>
+                    <p>The people of Malaysia are unevenly distributed betwwen Penensular and East Malaysia,with the vast majority living in Peninsular Malaysia.</p>
+                    <p>The population show great ethnic,linguistic,cultural,and religions diversity. Within this diversity,a significant distinction is made for administrative purposes betwwen indigenuis people.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://www.youngpioneertours.com/wp-content/uploads/2024/12/cd0c5c8ac760482897f9be8c8ec14190.jpg" alt="Diverse cultural representation in Malaysia with flags and landmarks">
+                    <img src="https://img.freepik.com/premium-vector/independence-day-illustration-malysian-people-holding-small-flags_218660-1087.jpg" alt="Diverse cultural representation in Malaysia">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/alihid.shanene.2024">Facebook</a>
+                <a href="https://www.instagram.com/alihids?igsh=MWdmZmV3MjFocDloZg==">Instagram</a>
+                <a href="https://www.youtube.com/account">YouTube</a>  
+
+            <div class="texfoot"><p>&copy; This website is for project purposes only.</p></div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Section navigation
+            const navLinksAll = document.querySelectorAll('.nav-link');
+            
+            navLinksAll.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Hide all sections
+                    document.querySelectorAll('section:not(.hero)').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show the selected section and hero if home
+                    if (sectionId === 'home') {
+                        document.querySelector('.home').style.display = 'block';
+                        document.querySelector('.gallery').style.display = 'none';
+                        document.querySelector('.places').style.display = 'none';
+                        document.querySelector('.about').style.display = 'none';
+                        document.querySelector('.contact').style.display = 'none';
+                    } else if (sectionId === 'gallery') {
+                        document.querySelector('.home').style.display = 'none';
+                        document.querySelector('.gallery').style.display = 'block';
+                        document.querySelector('.places').style.display = 'none';
+                        document.querySelector('.about').style.display = 'none';
+                        document.querySelector('.contact').style.display = 'none';
+                    } else if (sectionId === 'places') {
+                        document.querySelector('.home').style.display = 'none';
+                        document.querySelector('.gallery').style.display = 'none';
+                        document.querySelector('.places').style.display = 'block';
+                        document.querySelector('.about').style.display = 'none';
+                        document.querySelector('.contact').style.display = 'none';
+                    } else if (sectionId === 'about') {
+                        document.querySelector('.home').style.display = 'none';
+                        document.querySelector('.gallery').style.display = 'none';
+                        document.querySelector('.places').style.display = 'none';
+                        document.querySelector('.about').style.display = 'block';
+                        document.querySelector('.contact').style.display = 'none';
+                    } else if (sectionId === 'contact') {
+                        document.querySelector('.home').style.display = 'none';
+                        document.querySelector('.gallery').style.display = 'none';
+                        document.querySelector('.places').style.display = 'none';
+                        document.querySelector('.about').style.display = 'none';
+                        document.querySelector('.contact').style.display = 'block';
+                    }
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                    
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+            
+            // Initialize with home section visible
+            document.querySelector('.home').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
